@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block main %}
+<div class="container-fluid" style="padding:0;">
+    <div class="bh-content">
+	    <article class="post post-{{ post.pk }}">
+        <div class="container">
+            <div class="bh-artical-content">
+                <h2 class="bh-artical-title">{{ post.title }}</h2>
+                <div class="bh-card-tag">
+                    <div class="">
+						<img class="img-fluid rounded-circle" src="{% static 'blog/img/list-image.jpg' %}"/>
+                        <span class="text-success">落叶</span>
+                    </div>
+                    <div><i class="fa fa-clock-o"></i><time class="entry-date"datetime="{{ post.created_time }}"> {{ post.created_time }}</time></div>
+                    <div><i class="fa fa-eye"></i> {{ post.views }}</div>
+                    <div><i class="fa fa-commenting-o"></i> {{ post.comment_set.count }}</div>
+                </div>
+                <div class="bh-artical">
+				{{ post.body|safe }}
+                </div>
+                <div class="comment">
+                    <h4 class="bh-title">发表评论</h4>
+                    <form class="bh-comment-from" action="{% url 'comments:post_comment' post.pk %}" method="post">
+						{% csrf_token %}
+                        <div>
+                            <span class="bh-comment-from-icon" for="{{ form.text.id_for_label }}"><i class="fa fa-pencil"></i></span>
+                            <textarea placeholder="想说就说吧..." rows="1"></textarea>
+							{{ form.text.errors }}
+							<button type="button">发射</button>
+						</div>
+                        <span class="clearfix"></span>
+                    </form>
+					<div class="comment-list-panel">
+						<h3>评论列表，共 <span>{{ post.comment_set.count }}</span> 条评论</h3>
+						<ul class="comment-list list-unstyled">
+							{% for comment in comment_list %}
+							<li class="comment-item">
+								<span class="nickname">{{ comment.name }}</span>
+								<time class="submit-date">{{ comment.created_time }}</time>
+								<div class="text">
+								{{ comment.text }}
+								</div>
+							</li>
+							{% empty %}
+							暂无评论
+							{% endfor %}
+						</ul>
+					</div>
+                </div>
+            </div>
+        </div>
+		</article>
+    </div>
+</div>
+{% endblock main %}
+{% block toc %}
+{% endblock toc %}

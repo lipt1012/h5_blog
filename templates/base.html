@@ -1,0 +1,82 @@
+{% load staticfiles %}
+{% load blog_tags %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="/static/blog/img/favicon.ico" type="image/x-icon" />
+    <title>落叶丶为谁伤-博客</title>
+	<link rel="stylesheet" href="{% static 'blog/bootstrap/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static 'blog/css/bh-css.css' %}">
+	<link rel="stylesheet" href="{% static 'blog/font-awesome/css/font-awesome.min.css' %}">
+	<link rel="stylesheet" href="{% static 'blog/highlight/styles/railscasts.css' %}">
+	<style>
+	a{
+	    font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
+		color: #535887;
+	}
+	.copy {
+		text-align: center;
+		color: #666;
+		  }
+	.pagination-simple{
+		padding: 40px 20px 0 60px;
+	}
+	.bh-artical pre img{
+		vertical-align: middle;
+		width: 100%;
+		max-width: 100%;
+		height: auto;
+	}
+	.body { 
+		-webkit-overflow-scrolling: touch;
+		overflow-scrolling: touch;
+	}
+	</style>
+</head>
+<body>
+<div class="container-fluid" style="padding:0;">
+    <div class="bh-content">
+        <div class="bh-sidebar">
+            <div class="bh-sidebar-main">
+                <p class="bh-portrait" ><img src="{% static 'blog/img/list-image.jpg' %}" /></p>
+                <h1><a href="{% url 'blog:index' %}">落叶丶为谁伤</a></h1>
+                <p><a >测试工程师</a></p>
+            </div>
+        </div>
+        <div class="bh-nav-sidebar">
+            <ul>
+                <li><a class="active" href="#">H5</a></li>
+                <li><a href="#">Web</a></li>
+            </ul>
+        </div>
+        <div class="bh-main">
+            <div class="bh-main-body">
+                <!--header-->
+                <nav class="bh-header">
+                    <a class="active" href="#">首页</a>
+                    <a href="#">博客</a>
+                    <a href="#">关于</a>
+                    <a href="#">联系</a>
+                </nav>
+                <div class="bh-card">
+                    <div class="bh-card-main">
+                            {% block main %}
+                            {% endblock main %}
+                    </div>
+			<div class="bh-footer">
+                <p class="bh-copyright copy">&copy 2019 - 2019 <a href="{% url 'blog:index' %}" target="_blank" title="">落叶丶为谁伤</p>
+                <p class="bh-copyright copy"><a href="http://www.beian.miit.gov.cn/" target="_blank" title="">浙ICP备19032381号-1</a></p>
+            </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{% static 'blog/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'blog/bootstrap/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'blog/highlight/highlight.pack.js' %}"></script>
+</body>
+</html>
